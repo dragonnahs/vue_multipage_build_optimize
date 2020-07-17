@@ -1,0 +1,38 @@
+.home{
+  .draw{
+    width: 367px;
+    height: 367px;
+    margin: 0 auto;
+    background: url('../../assets/draw/draw_bg.png') no-repeat center center/100%;
+    box-sizing: border-box;
+    padding: 45px 40px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    .draw-item{
+      width: 89px;
+      height: 89px;
+      box-sizing: border-box;
+      background: url('../../assets/draw/draw_item_unselected.png') no-repeat center center/100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 10px;
+      &.selected-draw-item{
+        background: url('../../assets/draw/draw_item_selected.png') no-repeat center center/100%;
+        // opacity: 0.8;
+      }
+      img{
+        width: 54px;
+        height: 50px;
+      }
+    }
+    .draw-btn{
+      width: 89px;
+      height: 89px;
+      box-sizing: border-box;
+      background: url('../../assets/draw/draw_btn.png') no-repeat center center;
+      background-size: contain;
+    }
+  }
+}
