@@ -119,4 +119,64 @@ module.exports = {
 
 ## 添加git hooks
 
-前端团队开发中如果没有做正确的校验就提交了代码，拉取代码时会导致很多地方爆红不符合定制的开发规范，因此可以在提交代码时做些限制.在`git`提交代码时，会触发一些列的钩子函数，可以通过`husky`这个git hooks的工具来进行代码提交校验,需要先安装依赖包`cnpm i -D husky lint-staged`.
+前端团队开发中如果没有做正确的校验就提交了代码，拉取代码时会导致很多地方爆红不符合定制的开发规范，因此可以在提交代码时做些限制.在`git`提交代码时，会触发一些列的钩子函数，可以通过`husky`这个git hooks的工具来进行代码提交校验,需要先安装依赖包`cnpm i -D husky lint-staged @commitlint/config-conventional @commitlint/cli`.然后在package.json中添加如下代码:
+
+```json
+// package.json
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged",// 在pre-commit阶段运行下面配置的校验功能
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS" // 这个是规范提交的信息的，结合commitlint.config.js使用
+  }
+},
+"lint-staged": {
+  "src/**/*.{js,vue}": [
+    "npm run lint",
+    "git add ."
+  ]
+}
+
+```
+
+```js
+// commitlint.config.js
+// 参考的官方配置，提交的信息必须按照下面规范书写，类似`git commit -m 'feat: 添加eslint'`
+module.exports = {
+  // parserPreset: 'conventional-changelog-conventionalcommits',
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'body-leading-blank': [1, 'always'],
+    'body-max-line-length': [2, 'always', 100],
+    'footer-leading-blank': [1, 'always'],
+    'footer-max-line-length': [2, 'always', 100],
+    'header-max-length': [2, 'always', 100],
+    'scope-case': [2, 'always', 'lower-case'],
+    'subject-case': [
+      2,
+      'never',
+      ['sentence-case', 'start-case', 'pascal-case', 'upper-case']
+    ],
+    'subject-empty': [2, 'never'],
+    'subject-full-stop': [2, 'never', '.'],
+    'type-case': [2, 'always', 'lower-case'],
+    'type-empty': [2, 'never'],
+    'type-enum': [
+      2,
+      'always',
+      [
+        'build',
+        'chore',
+        'ci',
+        'docs',
+        'feat',
+        'fix',
+        'perf',
+        'refactor',
+        'revert',
+        'style',
+        'test'
+      ]
+    ]
+  }
+}
+```
