@@ -20,19 +20,19 @@ export default {
       videoSrc: 'http://vjs.zencdn.net/v/oceans.mp4'
     }
   },
-  mounted(){
+  mounted() {
     let options = {
       controls: true,
-      //自动播放属性,muted:静音播放
+      // 自动播放属性,muted:静音播放
       autoplay: false,
-      //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
-      preload: "auto",
-      //设置视频播放器的显示宽度（以像素为单位）
+      // 建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
+      preload: 'auto',
+      // 设置视频播放器的显示宽度（以像素为单位）
       // width: "800px",
-      //设置视频播放器的显示高度（以像素为单位）
+      // 设置视频播放器的显示高度（以像素为单位）
       // height: "400px",
-      controlBar:{
-        playToggle:true
+      controlBar: {
+        playToggle: true
       }
     }
     this.player = videojs(
@@ -41,8 +41,8 @@ export default {
     )
     videojs.addLanguage('zh-CN', videozhCN)
   },
-  beforeDestroy(){
-    if(this.player){
+  beforeDestroy() {
+    if (this.player) {
       this.player.dispose()
     }
   }

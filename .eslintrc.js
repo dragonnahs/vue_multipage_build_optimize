@@ -1,10 +1,3 @@
-# 为你的前端团队添加规范
-
-## 添加eslint
-
-vue-cli3构建一个新项目,添加`.eslintrc.js`配置如下:
-
-```js
 module.exports = {
   root: true,
   parserOptions: {
@@ -93,30 +86,3 @@ module.exports = {
     'layer': false
   }
 }
-
-
-```
-
-运行`npm run lint`会给出报错，运行`npm run serve`也会对项目进行eslint校验，无法通过校验就会报错
-![节点](./error.jpg)
-
-可以结合vscode的eslint插件快速修复无法通过验证的代码，首先下载插件，然后更改setting.json配置文件，具体如下:
-
-```json
-"eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "vue-html"
-],
-"eslint.run": "onSave",
-"editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-}
-
-```
-
-配置完成之后重启vscode，在编辑代码的时候如果未符合eslint的校验，保存时会自动修复代码。
-
-## 添加git hooks
-
-前端团队开发中如果没有做正确的校验就提交了代码，拉取代码时会导致很多地方爆红不符合定制的开发规范，因此可以在提交代码时做些限制.在`git`提交代码时，会触发一些列的钩子函数，可以通过`husky`这个git hooks的工具来进行代码提交校验,需要先安装依赖包`cnpm i -D husky lint-staged`.

@@ -42,32 +42,32 @@ export default {
     }
   },
   methods: {
-    handleClickDraw(){
+    handleClickDraw() {
       let timer
       let endNum = 8*3 + this.selectedIndex - this.activeIndex
-      if(!this.clickFlag){
+      if (!this.clickFlag) {
         return
       }
-      
+
       this.clickFlag = false
       timer = setInterval(() => {
         this.activeIndex += 1
-        if(this.activeIndex > 7){
+        if (this.activeIndex > 7) {
           this.activeIndex = 0
         }
         endNum--
-        if(endNum <= 0){
+        if (endNum <= 0) {
           this.clickFlag = true
           clearInterval(timer)
         }
-      }, 50);
+      }, 50)
     },
-    handleSelectIndex(target){
-      if(target === 1){
+    handleSelectIndex(target) {
+      if (target === 1) {
         this.selectedIndex = 2
-      } else if(target === 2){
+      } else if (target === 2) {
         this.selectedIndex = 3
-      } else if(target === 3){
+      } else if (target === 3) {
         this.selectedIndex = 6
       }
     }

@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const getEntries = require('./build/getEntries')
 const WebpackBundleAnalyzer = require('webpack-bundle-analyzer')
 
-const AutoInjectPlugin = require('auto-inject-plugin')
+// const AutoInjectPlugin = require('auto-inject-plugin')
 
 
 const pages = getEntries(resolve(__dirname, 'src/features/*/index.js'))
@@ -19,44 +19,44 @@ module.exports = {
   //   }
   // },
   chainWebpack: config => {
-    
+
     config.resolve.alias.set('vue$', 'vue/dist/vue.esm.js')
-    if(process.env.NODE_ENV === 'production'){
+    if (process.env.NODE_ENV === 'production') {
       config.optimization.splitChunks({
         chunks: 'all',
-        cacheGroups: { 
-          libs: { 
-            name: 'chunk-libs', 
-            test: /[\\/]node_modules[\\/]/, 
-            priority: 10, 
+        cacheGroups: {
+          libs: {
+            name: 'chunk-libs',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 10,
             chunks: 'initial'
-          }, 
-          elementUI: { 
+          },
+          elementUI: {
             name: 'chunk-elementUI',
             priority: 20,
             test: /[\\/]node_modules[\\/]_?element-ui(.*)/,
           },
-          swiper: { 
+          swiper: {
             name: 'chunk-swiper',
             priority: 20,
             test: /[\\/]node_modules[\\/]_?swiper(.*)/,
           },
-          videojs: { 
+          videojs: {
             name: 'chunk-videojs',
             priority: 20,
             test: /[\\/]node_modules[\\/]_?video.js(.*)/,
           }
-        } 
+        }
       })
       // config.plugin('AutoInjectPlugin').use(AutoInjectPlugin)
-      config.optimization.runtimeChunk({name: 'manifest'})
+      config.optimization.runtimeChunk({ name: 'manifest' })
     }
 
-    if(process.env.npm_config_report){
+    if (process.env.npm_config_report) {
       config.plugin('analyzer').use(WebpackBundleAnalyzer.BundleAnalyzerPlugin)
     }
-    
-    
+
+
 
     config
       .plugin('copy')
