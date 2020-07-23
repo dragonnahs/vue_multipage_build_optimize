@@ -142,7 +142,6 @@ module.exports = {
 // commitlint.config.js
 // 参考的官方配置，提交的信息必须按照下面规范书写，类似`git commit -m 'feat: 添加eslint'`
 module.exports = {
-  // parserPreset: 'conventional-changelog-conventionalcommits',
   extends: ['@commitlint/config-conventional'],
   rules: {
     'body-leading-blank': [1, 'always'],
