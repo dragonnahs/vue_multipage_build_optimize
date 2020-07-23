@@ -15,7 +15,7 @@ export default {
       } else {
         console.log(222)
       }
-      console.log(tes1)
+      console.log(tes1, 333)
     }
   }
 }
